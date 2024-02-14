@@ -1,0 +1,103 @@
+
+//+------------------------------------------------------------------+
+//|                                                Trend Chief EA MT5 |
+//|                                           https://forexroboteasy.com |
+//|                                                    Forex Robot Easy Team |
+//+------------------------------------------------------------------+
+#property copyright 'Forex Robot Easy Team'
+#property link      'https://forexroboteasy.com'
+
+// Trend Chief EA MT5 parameters
+input int    Timeframe = PERIOD_M15;    // Trading timeframe
+input string IndicatorName = 'Trend Chief';    // Trend Chief indicator name
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Attach Trend Chief indicator to the chart
+    int indicatorHandle = iCustom(NULL, Timeframe, IndicatorName);
+
+    if(indicatorHandle == INVALID_HANDLE)
+    {
+        // Indicator not found, display an error message and terminate the EA
+        Print('Error: Trend Chief indicator not found!');
+        return INIT_FAILED;
+    }
+    
+    return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Check for a bullish trend
+    if(AllTrendLinesGreen())
+    {
+        // Check if price crosses the main red trend line
+        if(CrossesMainTrendLine())
+        {
+            // Initiate buying
+            Buy();
+        }
+    }
+    
+    // Check for a bearish trend
+    if(AllTrendLinesRed())
+    {
+        // Check if price crosses the main red trend line
+        if(CrossesMainTrendLine())
+        {
+            // Initiate selling
+            Sell();
+        }
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Check if all trend lines have turned green                        |
+//+------------------------------------------------------------------+
+bool AllTrendLinesGreen()
+{
+    // TODO: Implement logic to check if all trend lines have turned green
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Check if all trend lines have turned red                          |
+//+------------------------------------------------------------------+
+bool AllTrendLinesRed()
+{
+    // TODO: Implement logic to check if all trend lines have turned red
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Check if price crosses the main red trend line                    |
+//+------------------------------------------------------------------+
+bool CrossesMainTrendLine()
+{
+    // TODO: Implement logic to check if price crosses the main red trend line
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Initiate buying                                                   |
+//+------------------------------------------------------------------+
+void Buy()
+{
+    // TODO: Implement logic to initiate buying
+    Print('Buying initiated');
+}
+
+//+------------------------------------------------------------------+
+//| Initiate selling                                                  |
+//+------------------------------------------------------------------+
+void Sell()
+{
+    // TODO: Implement logic to initiate selling
+    Print('Selling initiated');
+}
